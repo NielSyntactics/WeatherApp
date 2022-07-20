@@ -4,8 +4,8 @@ import moment from "moment";
 const options = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": "367ad25709msh7dcaffee531a5b2p1820bajsn83333382314f",
-    "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
+    "X-RapidAPI-Key": process.env.VUE_APP_API_KEY,
+    "X-RapidAPI-Host": process.env.VUE_APP_API_HOST,
   },
 };
 
@@ -51,6 +51,7 @@ const actions = {
         `https://weatherapi-com.p.rapidapi.com/current.json?q=${location}`,
         options
       );
+      console.log(process.env.VUE_APP_API_HOST);
       if (res.status == 200) {
         const data = await res.json();
         commit("Load_Weather_Data_API", data);
